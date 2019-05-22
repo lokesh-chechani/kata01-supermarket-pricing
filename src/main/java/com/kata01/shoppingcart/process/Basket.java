@@ -1,6 +1,8 @@
 package com.kata01.shoppingcart.process;
 
 import com.kata01.shoppingcart.core.Item;
+import com.kata01.shoppingcart.offers.Offer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,6 @@ import java.util.List;
  */
 
 public class Basket {
-
 
   private List<Item> itemList = new ArrayList<Item>();
 
@@ -39,6 +40,23 @@ public class Basket {
 
   }
 
+  //NoteOnly caveat with this approach is all the Offers needs to be applied at the end billing when all items added.
+  public void applyOfferToBasket(Offer offer, String itemName){
+
+    assert itemName!=null : "itemName must have valid name, should not be null";
+
+    Item offerToApplyItem = findItemByItemName(itemName);
+
+    if(offerToApplyItem == null){
+        System.out.println(String.format("Offer item %s does not exist in basket, ignoring it", itemName));
+        return;
+    }
+
+    Item offerAppliedItem = offer.applyOffer(offerToApplyItem);
+    itemList.set(itemList.indexOf(offerToApplyItem),offerAppliedItem);
+
+  }
+
   private boolean clubbedWithDuplicateItem(Item itemToAdd) {
 
     int indexOfSameItem = itemList.indexOf(itemToAdd);
@@ -47,7 +65,7 @@ public class Basket {
       Item duplicateItem = itemList.get(indexOfSameItem);
 
       duplicateItem.setPrice(duplicateItem.getPrice() + itemToAdd.getPrice());
-      duplicateItem.setUnit(duplicateItem.getUnit() + itemToAdd.getUnit());
+      duplicateItem.setQuantity(duplicateItem.getQuantity() + itemToAdd.getQuantity());
 
       itemList.set(indexOfSameItem, duplicateItem);
 
@@ -55,6 +73,17 @@ public class Basket {
     }
 
     return false;
+  }
+
+
+  private Item findItemByItemName(String itemName) {
+
+    Item found = itemList.stream()
+            .filter(item -> itemName.equals(item.getName()))
+            .findAny()
+            .orElse(null);
+
+    return found;
   }
 
 

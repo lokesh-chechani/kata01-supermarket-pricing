@@ -20,7 +20,7 @@ public final class Item {
 
   @NonNull
   @EqualsAndHashCode.Exclude
-  private int unit;
+  private int quantity;
 
   @NonNull
   @EqualsAndHashCode.Exclude
