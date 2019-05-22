@@ -1,5 +1,6 @@
-package com.kata01.shoppingcart.process;
+package com.kata01.shoppingcart.core;
 
+import com.kata01.shoppingcart.core.Cart;
 import com.kata01.shoppingcart.core.Item;
 import com.kata01.shoppingcart.offers.BuyXforYOffer;
 import com.kata01.shoppingcart.offers.DiscountOffer;
@@ -10,123 +11,123 @@ import org.junit.Test;
 /**
  * Created by lokeshchechani
  *
- * JUnit test for Basket Test : Following TDD approach
+ * JUnit test for Cart Test : Following TDD approach
  *
  */
-public class BasketTest {
+public class CartTest {
 
   @Test
   public void testWhenCheckoutWithNoItemThenTotalZero() {
 
     double expected =0;
-    Basket basket = new Basket();
-    Assert.assertEquals(expected,basket.getTotal(),0.001);
+    Cart cart = new Cart();
+    Assert.assertEquals(expected, cart.getTotal(),0.001);
 
   }
 
   @Test
   public void testAddOneItemToBasket(){
-    Basket basket = new Basket();
+    Cart cart = new Cart();
 
     Item shoppingItem = new Item("itemA",3,10.0);
-    basket.addItemToBasket(shoppingItem);
+    cart.addItemToBasket(shoppingItem);
 
-    Assert.assertEquals(1,basket.getItemCount());
+    Assert.assertEquals(1, cart.getBasketSize());
 
     double expectedTotalForSingleItem = 30.0;
-    Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
+    Assert.assertEquals(expectedTotalForSingleItem, cart.getTotal(),0.001);
 
   }
 
   @Test
   public void testAddMoreDifferentItemToBasket() {
-    Basket basket = new Basket();
+    Cart cart = new Cart();
 
     Item shoppingItemA = new Item("itemA",3,10.0);
-    basket.addItemToBasket(shoppingItemA);
+    cart.addItemToBasket(shoppingItemA);
 
     Item shoppingItemB = new Item("itemB",2,30.0);
-    basket.addItemToBasket(shoppingItemB);
+    cart.addItemToBasket(shoppingItemB);
 
     int expectedCount = 2;
-    Assert.assertEquals(expectedCount,basket.getItemCount());
+    Assert.assertEquals(expectedCount, cart.getBasketSize());
 
     double expectedTotalForSingleItem = 90;
-    Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
+    Assert.assertEquals(expectedTotalForSingleItem, cart.getTotal(),0.001);
 
   }
 
   @Test
   public void testAddSameItemMoreThanOneToBasket() {
-    Basket basket = new Basket();
+    Cart cart = new Cart();
 
     Item shoppingItemA = new Item("itemA",3,10.0);
-    basket.addItemToBasket(shoppingItemA);
+    cart.addItemToBasket(shoppingItemA);
 
     Item shoppingItemB = new Item("itemB",2,30.0);
-    basket.addItemToBasket(shoppingItemB);
+    cart.addItemToBasket(shoppingItemB);
 
     Item shoppingItemAa =  new Item("itemA",5,10.0);
-    basket.addItemToBasket(shoppingItemAa);
+    cart.addItemToBasket(shoppingItemAa);
 
     int expectedCount = 2;
-    Assert.assertEquals(expectedCount,basket.getItemCount());
+    Assert.assertEquals(expectedCount, cart.getBasketSize());
 
     double expectedTotalForSingleItem = 140;
-    Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
+    Assert.assertEquals(expectedTotalForSingleItem, cart.getTotal(),0.001);
   }
 
   @Test
   public void testBuyXforYOffer() {
-    Basket basket = new Basket();
+    Cart cart = new Cart();
 
     Item shoppingItemA = new Item("itemA",3,10.0);
-    basket.addItemToBasket(shoppingItemA);
+    cart.addItemToBasket(shoppingItemA);
 
     Item shoppingItemB = new Item("itemB",2,30.0);
-    basket.addItemToBasket(shoppingItemB);
+    cart.addItemToBasket(shoppingItemB);
 
     Item shoppingItemAa =  new Item("itemA",5,10.0);
-    basket.addItemToBasket(shoppingItemAa);
+    cart.addItemToBasket(shoppingItemAa);
 
     BuyXforYOffer xforYOffer = new BuyXforYOffer(3,2);
-    basket.applyOfferToBasket(xforYOffer,"itemA");
+    cart.applyOfferToBasket(xforYOffer,"itemA");
 
     double expectedTotalForSingleItem = 120;
-    Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
+    Assert.assertEquals(expectedTotalForSingleItem, cart.getTotal(),0.001);
   }
 
 
   @Test
   public void testGetFiftyPercentDiscountOffer() {
-    Basket basket = new Basket();
+    Cart cart = new Cart();
 
     Item shoppingItemA = new Item("itemA",3,10.0);
-    basket.addItemToBasket(shoppingItemA);
+    cart.addItemToBasket(shoppingItemA);
 
     Item shoppingItemB = new Item("itemB",2,30.0);
-    basket.addItemToBasket(shoppingItemB);
+    cart.addItemToBasket(shoppingItemB);
 
 
     DiscountOffer discountOffer = new DiscountOffer(50);
-    basket.applyOfferToBasket(discountOffer,"itemA");
+    cart.applyOfferToBasket(discountOffer,"itemA");
 
     double expectedTotalForSingleItem = 75;
-    Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
+    Assert.assertEquals(expectedTotalForSingleItem, cart.getTotal(),0.001);
   }
 
   @Test
   public void testGetTwoItemsForOnePountOffer() {
-    Basket basket = new Basket();
+    Cart cart = new Cart();
 
     Item shoppingItemA = new Item("itemA",3,10.0);
-    basket.addItemToBasket(shoppingItemA);
+    cart.addItemToBasket(shoppingItemA);
 
     FixedPriceOffer fixedPriceOffer = new FixedPriceOffer(1,2);
-    basket.applyOfferToBasket(fixedPriceOffer,"itemA");
+    cart.applyOfferToBasket(fixedPriceOffer,"itemA");
 
     double expectedTotalForSingleItem = 11;
-    Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
+    Assert.assertEquals(expectedTotalForSingleItem, cart.getTotal(),0.001);
   }
 
 

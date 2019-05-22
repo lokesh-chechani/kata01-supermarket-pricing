@@ -1,4 +1,4 @@
-package com.kata01.shoppingcart.process;
+package com.kata01.shoppingcart.core;
 
 import com.kata01.shoppingcart.core.Item;
 import com.kata01.shoppingcart.offers.Offer;
@@ -9,23 +9,23 @@ import java.util.List;
 /**
  * Created by lokeshchechani
  *
- * The class represent the Basket/Shopping Cart and its interfaces for checkout process.
+ * The class represent the Cart/Shopping Cart and its interfaces for checkout process.
  *
  */
 
-public class Basket {
+public class Cart {
 
-  private List<Item> itemList = new ArrayList<Item>();
+  private List<Item> basket = new ArrayList<Item>();
 
   public double getTotal(){
 
-    double total = itemList.stream().mapToDouble(i -> (i.getCalculatedPrice())).sum();
+    double total = basket.stream().mapToDouble(i -> (i.getCalculatedPrice())).sum();
     return total;
 
   }
 
-  public int getItemCount(){
-    return itemList.size();
+  public int getBasketSize(){
+    return basket.size();
   }
 
   public void addItemToBasket(Item item){
@@ -37,7 +37,7 @@ public class Basket {
       return;
     }
     item.setCalculatedPrice(item.getQuantity()*item.getUnitPrice());
-    itemList.add(item);
+    basket.add(item);
 
   }
 
@@ -54,21 +54,21 @@ public class Basket {
     }
 
     Item offerAppliedItem = offer.applyOffer(offerToApplyItem);
-    itemList.set(itemList.indexOf(offerToApplyItem),offerAppliedItem);
+    basket.set(basket.indexOf(offerToApplyItem),offerAppliedItem);
 
   }
 
   private boolean clubbedWithDuplicateItem(Item itemToAdd) {
 
-    int indexOfSameItem = itemList.indexOf(itemToAdd);
+    int indexOfSameItem = basket.indexOf(itemToAdd);
 
     if (indexOfSameItem != -1) { // Means item is exist and time to club this item with the one exist.
-      Item duplicateItem = itemList.get(indexOfSameItem);
+      Item duplicateItem = basket.get(indexOfSameItem);
 
       duplicateItem.setQuantity(duplicateItem.getQuantity() + itemToAdd.getQuantity());
       duplicateItem.setCalculatedPrice(duplicateItem.getQuantity()*duplicateItem.getUnitPrice());
 
-      itemList.set(indexOfSameItem, duplicateItem);
+      basket.set(indexOfSameItem, duplicateItem);
 
       return true;
     }
@@ -79,7 +79,7 @@ public class Basket {
 
   private Item findItemByItemName(String itemName) {
 
-    Item found = itemList.stream()
+    Item found = basket.stream()
             .filter(item -> itemName.equals(item.getName()))
             .findAny()
             .orElse(null);
