@@ -7,6 +7,8 @@ import java.util.List;
 /**
  * Created by lokeshchechani
  *
+ * The class represent the Basket and its interfaces for checkout/
+ *
  */
 
 public class Basket {
@@ -15,8 +17,10 @@ public class Basket {
   List<Item> itemList = new ArrayList<Item>();
 
   public double getTotal(){
-    //TODO : Finish here
-    return 0;
+
+    double total = itemList.stream().mapToDouble(i -> i.getPrice()).sum();
+    return total;
+
   }
 
   public int getItemCount(){

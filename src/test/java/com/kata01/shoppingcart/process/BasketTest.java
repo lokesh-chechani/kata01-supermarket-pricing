@@ -30,6 +30,9 @@ public class BasketTest {
 
     Assert.assertEquals(1,basket.getItemCount());
 
+    double expectedTotalForSingleItem = shoppingItem.getPrice();
+    Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
+
   }
 
 }
