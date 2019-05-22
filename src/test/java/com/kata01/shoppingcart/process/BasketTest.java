@@ -2,6 +2,7 @@ package com.kata01.shoppingcart.process;
 
 import com.kata01.shoppingcart.core.Item;
 import com.kata01.shoppingcart.offers.BuyXforYOffer;
+import com.kata01.shoppingcart.offers.DiscountOffer;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -91,6 +92,25 @@ public class BasketTest {
     basket.applyOfferToBasket(xforYOffer,"itemA");
 
     double expectedTotalForSingleItem = 120;
+    Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
+  }
+
+
+  @Test
+  public void testGetFiftyPercentDiscountOffer() {
+    Basket basket = new Basket();
+
+    Item shoppingItemA = new Item("itemA",3,10.0);
+    basket.addItemToBasket(shoppingItemA);
+
+    Item shoppingItemB = new Item("itemB",2,30.0);
+    basket.addItemToBasket(shoppingItemB);
+
+
+    DiscountOffer discountOffer = new DiscountOffer(50);
+    basket.applyOfferToBasket(discountOffer,"itemA");
+
+    double expectedTotalForSingleItem = 75;
     Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
   }
 
