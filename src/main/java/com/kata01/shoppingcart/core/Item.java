@@ -1,6 +1,7 @@
 package com.kata01.shoppingcart.core;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -11,16 +12,18 @@ import lombok.RequiredArgsConstructor;
  */
 @Data
 @RequiredArgsConstructor
-public class Item {
+@EqualsAndHashCode
+public final class Item {
 
-  @NonNull
+  @NonNull //Considering name to uniquely identify the item
   private String name;
 
   @NonNull
+  @EqualsAndHashCode.Exclude
   private int unit;
 
   @NonNull
+  @EqualsAndHashCode.Exclude
   private double price;
-
 
 }

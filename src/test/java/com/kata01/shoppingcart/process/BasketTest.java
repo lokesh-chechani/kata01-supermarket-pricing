@@ -35,4 +35,42 @@ public class BasketTest {
 
   }
 
+  @Test
+  public void testAddMoreDifferentItemToBasket() {
+    Basket basket = new Basket();
+
+    Item shoppingItemA = new Item("itemA",3,10.0);
+    basket.addItemToBasket(shoppingItemA);
+
+    Item shoppingItemB = new Item("itemB",2,30.0);
+    basket.addItemToBasket(shoppingItemB);
+
+    int expectedCount = 2;
+    Assert.assertEquals(expectedCount,basket.getItemCount());
+
+    double expectedTotalForSingleItem = 40;
+    Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
+
+  }
+
+  @Test
+  public void testAddSameItemMoreThanOneToBasket() {
+    Basket basket = new Basket();
+
+    Item shoppingItemA = new Item("itemA",3,30.0);
+    basket.addItemToBasket(shoppingItemA);
+
+    Item shoppingItemB = new Item("itemB",2,30.0);
+    basket.addItemToBasket(shoppingItemB);
+
+    Item shoppingItemAa =  new Item("itemA",5,50.0);
+    basket.addItemToBasket(shoppingItemAa);
+
+    int expectedCount = 2;
+    Assert.assertEquals(expectedCount,basket.getItemCount());
+
+    double expectedTotalForSingleItem = 110;
+    Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
+  }
+
 }
