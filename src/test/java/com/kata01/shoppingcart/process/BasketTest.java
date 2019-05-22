@@ -31,7 +31,7 @@ public class BasketTest {
 
     Assert.assertEquals(1,basket.getItemCount());
 
-    double expectedTotalForSingleItem = shoppingItem.getPrice();
+    double expectedTotalForSingleItem = 30.0;
     Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
 
   }
@@ -49,7 +49,7 @@ public class BasketTest {
     int expectedCount = 2;
     Assert.assertEquals(expectedCount,basket.getItemCount());
 
-    double expectedTotalForSingleItem = 40;
+    double expectedTotalForSingleItem = 90;
     Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
 
   }
@@ -58,19 +58,19 @@ public class BasketTest {
   public void testAddSameItemMoreThanOneToBasket() {
     Basket basket = new Basket();
 
-    Item shoppingItemA = new Item("itemA",3,30.0);
+    Item shoppingItemA = new Item("itemA",3,10.0);
     basket.addItemToBasket(shoppingItemA);
 
     Item shoppingItemB = new Item("itemB",2,30.0);
     basket.addItemToBasket(shoppingItemB);
 
-    Item shoppingItemAa =  new Item("itemA",5,50.0);
+    Item shoppingItemAa =  new Item("itemA",5,10.0);
     basket.addItemToBasket(shoppingItemAa);
 
     int expectedCount = 2;
     Assert.assertEquals(expectedCount,basket.getItemCount());
 
-    double expectedTotalForSingleItem = 110;
+    double expectedTotalForSingleItem = 140;
     Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
   }
 
@@ -78,19 +78,19 @@ public class BasketTest {
   public void testBuyXforYOffer() {
     Basket basket = new Basket();
 
-    Item shoppingItemA = new Item("itemA",3,30.0);
+    Item shoppingItemA = new Item("itemA",3,10.0);
     basket.addItemToBasket(shoppingItemA);
 
     Item shoppingItemB = new Item("itemB",2,30.0);
     basket.addItemToBasket(shoppingItemB);
 
-    Item shoppingItemAa =  new Item("itemA",5,50.0);
+    Item shoppingItemAa =  new Item("itemA",5,10.0);
     basket.addItemToBasket(shoppingItemAa);
 
     BuyXforYOffer xforYOffer = new BuyXforYOffer(3,2);
     basket.applyOfferToBasket(xforYOffer,"itemA");
 
-    double expectedTotalForSingleItem = 90;
+    double expectedTotalForSingleItem = 120;
     Assert.assertEquals(expectedTotalForSingleItem,basket.getTotal(),0.001);
   }
 

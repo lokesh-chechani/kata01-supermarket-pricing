@@ -24,6 +24,11 @@ public final class Item {
 
   @NonNull
   @EqualsAndHashCode.Exclude
-  private double price;
+  private double unitPrice;
+
+
+  @EqualsAndHashCode.Exclude
+  private double calculatedPrice;
+
 
 }

@@ -19,7 +19,7 @@ public class Basket {
 
   public double getTotal(){
 
-    double total = itemList.stream().mapToDouble(i -> i.getPrice()).sum();
+    double total = itemList.stream().mapToDouble(i -> (i.getCalculatedPrice())).sum();
     return total;
 
   }
@@ -36,6 +36,7 @@ public class Basket {
     if (clubbedWithDuplicateItem(item)){
       return;
     }
+    item.setCalculatedPrice(item.getQuantity()*item.getUnitPrice());
     itemList.add(item);
 
   }
@@ -64,8 +65,8 @@ public class Basket {
     if (indexOfSameItem != -1) { // Means item is exist and time to club this item with the one exist.
       Item duplicateItem = itemList.get(indexOfSameItem);
 
-      duplicateItem.setPrice(duplicateItem.getPrice() + itemToAdd.getPrice());
       duplicateItem.setQuantity(duplicateItem.getQuantity() + itemToAdd.getQuantity());
+      duplicateItem.setCalculatedPrice(duplicateItem.getQuantity()*duplicateItem.getUnitPrice());
 
       itemList.set(indexOfSameItem, duplicateItem);
 

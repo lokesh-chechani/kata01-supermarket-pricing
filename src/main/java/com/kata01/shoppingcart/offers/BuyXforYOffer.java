@@ -25,12 +25,12 @@ public class BuyXforYOffer implements Offer {
         int noOfBundles = totalItemInBakset/x;
         int remainderItemToAddUp = totalItemInBakset%x;
 
-        double totalPriceAfterOffer = (noOfBundles * y + remainderItemToAddUp) * item.getPrice();
+        double totalPriceAfterOffer = (noOfBundles * y + remainderItemToAddUp) * item.getUnitPrice();
 
         // This can be converted in logging.
-        System.out.println(String.format("Buy %dfor%d Offer applied on item %s. Final price = %f against total quantities = %d",x,y,item.getName(),totalPriceAfterOffer,totalItemInBakset));
+        System.out.println(String.format("Buy %dfor%d Offer applied on item %s. Final unitPrice = %f against total quantities = %d",x,y,item.getName(),totalPriceAfterOffer,totalItemInBakset));
 
-        item.setPrice(totalPriceAfterOffer);
+        item.setCalculatedPrice(totalPriceAfterOffer);
 
         return item;
 
