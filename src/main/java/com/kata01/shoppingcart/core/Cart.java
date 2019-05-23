@@ -1,13 +1,12 @@
 package com.kata01.shoppingcart.core;
 
-import com.kata01.shoppingcart.core.Item;
 import com.kata01.shoppingcart.offers.Offer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by lokeshchechani
+ * @author lokesh.chechani
  *
  * The class represent the Cart/Shopping Cart and its interfaces for checkout process.
  *
@@ -15,13 +14,10 @@ import java.util.List;
 
 public class Cart {
 
-  private List<Item> basket = new ArrayList<Item>();
+  private List<Item> basket = new ArrayList<>();
 
   public double getTotal(){
-
-    double total = basket.stream().mapToDouble(i -> (i.getCalculatedPrice())).sum();
-    return total;
-
+    return basket.stream().mapToDouble(i -> (i.getCalculatedPrice())).sum();
   }
 
   public int getBasketSize(){
@@ -44,6 +40,7 @@ public class Cart {
   //NoteOnly caveat with this approach is all the Offers needs to be applied at the end billing when all items added.
   public void applyOfferToBasket(Offer offer, String itemName){
 
+    assert offer != null : "Applied offer should not be null";
     assert itemName!=null : "itemName must have valid name, should not be null";
 
     Item offerToApplyItem = findItemByItemName(itemName);
