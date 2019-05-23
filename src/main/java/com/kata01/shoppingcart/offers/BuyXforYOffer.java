@@ -6,7 +6,9 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 /**
- * @author lokesh.chechani on 22/05/2019
+ * @author lokesh.chechani
+ *
+ * Offer Buy  2 for 3 use case
  */
 @Data
 @RequiredArgsConstructor

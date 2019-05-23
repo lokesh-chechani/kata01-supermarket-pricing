@@ -3,7 +3,7 @@ package com.kata01.shoppingcart.offers;
 import com.kata01.shoppingcart.core.Item;
 
 /**
- * Created by lokeshchechani
+ * @author lokesh.chechani
  *
  * Concise contract for all the offers to be applied while checkout
  */

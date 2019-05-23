@@ -6,7 +6,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 /**
- * Created by lokeshchechani
+ * @author lokesh.chechani
  *
  * Core class for SKU/Item
  */

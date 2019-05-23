@@ -1,7 +1,5 @@
 package com.kata01.shoppingcart.core;
 
-import com.kata01.shoppingcart.core.Cart;
-import com.kata01.shoppingcart.core.Item;
 import com.kata01.shoppingcart.offers.BuyXforYOffer;
 import com.kata01.shoppingcart.offers.DiscountOffer;
 import com.kata01.shoppingcart.offers.FixedPriceOffer;
@@ -9,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Created by lokeshchechani
+ * @author lokesh.chechani
  *
  * JUnit test for Cart Test : Following TDD approach
  *
@@ -127,6 +125,20 @@ public class CartTest {
     cart.applyOfferToBasket(fixedPriceOffer,"itemA");
 
     double expectedTotalForSingleItem = 11;
+    Assert.assertEquals(expectedTotalForSingleItem, cart.getTotal(),0.001);
+  }
+
+  @Test
+  public void testOfferOnItemNotPresntInBasket() {
+    Cart cart = new Cart();
+
+    Item shoppingItemA = new Item("itemA",3,10.0);
+    cart.addItemToBasket(shoppingItemA);
+
+    FixedPriceOffer fixedPriceOffer = new FixedPriceOffer(1,2);
+    cart.applyOfferToBasket(fixedPriceOffer,"itemX");
+
+    double expectedTotalForSingleItem = 30;
     Assert.assertEquals(expectedTotalForSingleItem, cart.getTotal(),0.001);
   }
 
