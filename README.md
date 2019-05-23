@@ -10,6 +10,7 @@ Clean code and SOLID principal.
 ## Development Style
 ##### TDD Style development :
 It is based on the test-first concept of Extreme Programming (XP) that encourages simple design with high level of confidence.
+[TDD](https://technologyconversations.com/2014/09/30/test-driven-development-tdd/)
 
 The procedure of doing TDD is following:
 
@@ -18,7 +19,6 @@ The procedure of doing TDD is following:
 - Write the implementation code
 - Run all tests
 - Refactor
-[TDD](https://technologyconversations.com/2014/09/30/test-driven-development-tdd/)
 
 ## Branching model
 The branching model used is [GitFlow](http://nvie.com/posts/a-successful-git-branching-model/)
