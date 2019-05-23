@@ -1,26 +1,34 @@
 package com.kata01.shoppingcart.core;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 /**
- * Created by lokeshchechani
+ * @author lokesh.chechani
  *
  * Core class for SKU/Item
  */
 @Data
 @RequiredArgsConstructor
-public class Item {
+@EqualsAndHashCode
+public final class Item {
 
-  @NonNull
+  @NonNull //Considering name to uniquely identify the item
   private String name;
 
   @NonNull
-  private int unit;
+  @EqualsAndHashCode.Exclude
+  private int quantity;
 
   @NonNull
-  private double price;
+  @EqualsAndHashCode.Exclude
+  private double unitPrice;
+
+
+  @EqualsAndHashCode.Exclude
+  private double calculatedPrice;
 
 
 }
