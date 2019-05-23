@@ -3,11 +3,11 @@ Solving a problem domain which is again something simple: pricing items at super
 
 A solution to [Supermarket Pricing](https://policyexpert.github.io/coding-assessment/​). inspired on [Pragmatic Dave’s Supermarket Kata](http://codekata.com/kata/kata01-supermarket-pricing/)
 
-#Design Pattern
+## Design Pattern
 Clean code and SOLID principal.
 [S.O.L.I.D principles](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design))
 
-#Development Style
+## Development Style
 ##### TDD Style development :
 It is based on the test-first concept of Extreme Programming (XP) that encourages simple design with high level of confidence.
 
@@ -20,8 +20,8 @@ The procedure of doing TDD is following:
 - Refactor
 [TDD](https://technologyconversations.com/2014/09/30/test-driven-development-tdd/)
 
-#Branching model
+## Branching model
 The branching model used is [GitFlow](http://nvie.com/posts/a-successful-git-branching-model/)
 
-#Packaging
+## Packaging
 [Apache Maven](https://maven.apache.org/) 
