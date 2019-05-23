@@ -22,6 +22,8 @@ The procedure of doing TDD is following:
 
 ## Branching model
 The branching model used is [GitFlow](http://nvie.com/posts/a-successful-git-branching-model/)
+###### Note 
+_All feature branches were not deleted : To demonstrate Gitflow in development_
 
 ## Packaging
 [Apache Maven](https://maven.apache.org/) 
